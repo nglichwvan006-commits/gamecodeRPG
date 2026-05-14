@@ -163,7 +163,7 @@ CREATE INDEX idx_user_inventory_profile_id ON user_inventory(profile_id);
 -- 10. PETS
 -----------------------------------------
 CREATE TABLE pets (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id TEXT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     buff_type VARCHAR(50),
@@ -181,7 +181,7 @@ CREATE TRIGGER set_pets_updated_at BEFORE UPDATE ON pets FOR EACH ROW EXECUTE FU
 CREATE TABLE user_pets (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     profile_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-    pet_id UUID NOT NULL REFERENCES pets(id) ON DELETE CASCADE,
+    pet_id TEXT NOT NULL REFERENCES pets(id) ON DELETE CASCADE,
     is_active BOOLEAN DEFAULT false,
     level INT NOT NULL DEFAULT 1,
     xp INT NOT NULL DEFAULT 0,
@@ -196,7 +196,7 @@ CREATE INDEX idx_user_pets_profile_id ON user_pets(profile_id);
 -- 12. MAPS
 -----------------------------------------
 CREATE TABLE maps (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id TEXT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     min_level INT NOT NULL DEFAULT 1,
@@ -210,8 +210,8 @@ CREATE TRIGGER set_maps_updated_at BEFORE UPDATE ON maps FOR EACH ROW EXECUTE FU
 -- 13. ZONES
 -----------------------------------------
 CREATE TABLE zones (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    map_id UUID NOT NULL REFERENCES maps(id) ON DELETE CASCADE,
+    id TEXT PRIMARY KEY,
+    map_id TEXT NOT NULL REFERENCES maps(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     enemy_type VARCHAR(100),
@@ -230,7 +230,7 @@ CREATE TABLE quests (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     title VARCHAR(255) NOT NULL,
     description TEXT,
-    zone_id UUID REFERENCES zones(id) ON DELETE CASCADE,
+    zone_id TEXT REFERENCES zones(id) ON DELETE CASCADE,
     reward_xp INT NOT NULL DEFAULT 0,
     reward_coins INT NOT NULL DEFAULT 0,
     reward_item_id UUID REFERENCES inventory_items(id) ON DELETE SET NULL,
@@ -295,7 +295,7 @@ CREATE INDEX idx_streaks_profile_id ON streaks(profile_id);
 -- 18. BOSSES
 -----------------------------------------
 CREATE TABLE bosses (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id TEXT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     total_hp INT NOT NULL,
@@ -313,7 +313,7 @@ CREATE TRIGGER set_bosses_updated_at BEFORE UPDATE ON bosses FOR EACH ROW EXECUT
 CREATE TABLE boss_progress (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     profile_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-    boss_id UUID NOT NULL REFERENCES bosses(id) ON DELETE CASCADE,
+    boss_id TEXT NOT NULL REFERENCES bosses(id) ON DELETE CASCADE,
     damage_dealt INT NOT NULL DEFAULT 0,
     is_defeated BOOLEAN DEFAULT false,
     created_at TIMESTAMPTZ DEFAULT NOW(),
