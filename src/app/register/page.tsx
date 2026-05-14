@@ -31,9 +31,14 @@ export default function RegisterPage() {
     }
 
     setIsLoading(true)
+    console.log('Attempting to register user:', email)
 
     try {
-      const { error } = await supabase.auth.signUp({
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        throw new Error('Supabase environment variables are missing. Please check your Vercel configuration.')
+      }
+
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -44,14 +49,17 @@ export default function RegisterPage() {
       })
 
       if (error) {
+        console.error('Registration error:', error)
         toast.error(error.message)
         return
       }
 
+      console.log('Registration success:', data)
       toast.success('Registration successful! Please check your email for confirmation.')
       router.push('/login')
-    } catch (error) {
-      toast.error('An unexpected error occurred.')
+    } catch (error: any) {
+      console.error('Unexpected registration error:', error)
+      toast.error(error.message || 'An unexpected error occurred.')
     } finally {
       setIsLoading(false)
     }

@@ -135,7 +135,10 @@ function PetForm({ initialData, onSuccess, onCancel }: any) {
   })
   const mutation = useMutation({
     mutationFn: (data: any) => initialData ? adminService.updatePet(initialData.id, data) : adminService.createPet(data),
-    onSuccess
+    onSuccess,
+    onError: (error: any) => {
+      toast.error(error.message || 'Failed to save pet. Make sure you have admin privileges.')
+    }
   })
   return (
     <Form {...form}>
