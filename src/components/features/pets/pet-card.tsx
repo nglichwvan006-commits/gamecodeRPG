@@ -44,16 +44,16 @@ const PET_VISUALS: Record<string, { icon: any, animation: any, color: string }> 
     },
     color: 'text-orange-500'
   },
-  'Cyber Fox': { 
+  'Rubber Duck': { 
     icon: Zap, 
     animation: {
       x: [0, 4, -4, 0],
       scale: [1, 1.02, 0.98, 1],
       opacity: [0.8, 1, 0.8]
     },
-    color: 'text-cyan-400'
+    color: 'text-yellow-400'
   },
-  'Shadow Cat': { 
+  'Code Owl': { 
     icon: Ghost, 
     animation: {
       y: [0, -3, 0],
@@ -61,7 +61,7 @@ const PET_VISUALS: Record<string, { icon: any, animation: any, color: string }> 
       skewX: [0, 5, -5, 0],
       filter: ['brightness(1)', 'brightness(1.5)', 'brightness(1)']
     },
-    color: 'text-purple-500'
+    color: 'text-blue-500'
   },
   'default': {
     icon: Star,

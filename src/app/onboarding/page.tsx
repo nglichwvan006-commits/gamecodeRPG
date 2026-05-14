@@ -86,32 +86,50 @@ export default function OnboardingPage() {
       return
     }
 
+    if (!user?.id) {
+      toast.error('Authentication error. Please log in again.')
+      return
+    }
+
     setIsSubmitting(true)
+    console.log('Starting character creation for user:', user.id)
 
     try {
-      // 1. Update Profile Metadata
-      const { error: profileError } = await supabase.auth.updateUser({
-        data: { 
+      // 1. Update Profile directly in public.profiles table
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .update({ 
           full_name: charName,
           avatar_url: selectedAvatar,
-        }
-      })
+        })
+        .eq('id', user.id)
 
-      if (profileError) throw profileError
+      if (profileError) {
+        console.error('Profile update error:', profileError)
+        throw profileError
+      }
 
       // 2. Create Character
+      const selectedClassData = CLASSES.find(c => c.id === selectedClass)
       const { error: charError } = await supabase.from('characters').insert({
-        profile_id: user?.id,
+        profile_id: user.id,
         class_id: selectedClass,
-        hp: CLASSES.find(c => c.id === selectedClass)?.name === 'Warrior' ? 150 : 100,
-        mp: CLASSES.find(c => c.id === selectedClass)?.name === 'Mage' ? 100 : 50,
+        hp: selectedClassData?.name === 'Warrior' ? 150 : 100,
+        mp: selectedClassData?.name === 'Mage' ? 100 : 50,
       })
 
-      if (charError) throw charError
+      if (charError) {
+        console.error('Character creation error:', charError)
+        throw charError
+      }
 
+      console.log('Character created successfully!')
       toast.success('Your legend begins now!')
-      router.push('/adventure')
+      
+      // Force refresh and redirect
+      window.location.href = '/adventure'
     } catch (error: any) {
+      console.error('Onboarding failed:', error)
       toast.error(error.message || 'Failed to create character.')
     } finally {
       setIsSubmitting(false)
