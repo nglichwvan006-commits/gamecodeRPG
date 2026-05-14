@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS public.user_daily_quests (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     profile_id UUID NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
-    daily_quest_id UUID NOT NULL REFERENCES public.daily_quests(id) ON DELETE CASCADE,
+    daily_quest_id TEXT NOT NULL REFERENCES public.daily_quests(id) ON DELETE CASCADE,
     current_value INT NOT NULL DEFAULT 0,
     is_completed BOOLEAN DEFAULT false,
     is_claimed BOOLEAN DEFAULT false,
