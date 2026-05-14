@@ -262,7 +262,7 @@ CREATE INDEX idx_user_quests_profile_id ON user_quests(profile_id);
 -- 16. DAILY_QUESTS
 -----------------------------------------
 CREATE TABLE daily_quests (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id TEXT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT,
     goal_type VARCHAR(50) NOT NULL,
