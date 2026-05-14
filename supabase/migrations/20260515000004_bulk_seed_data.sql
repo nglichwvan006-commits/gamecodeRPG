@@ -2,10 +2,13 @@
 -- Adds 50 Easy Problems, 20 Achievements, 30 Items, 10 Pets, 5 Zones, 5 Bosses
 
 --------------------------------------------------------------------------------
--- 1. PROBLEMS (50 Easy Problems)
+-- 1. PROBLEMS (50 Easy Problems + Specific Map Problems)
 --------------------------------------------------------------------------------
-INSERT INTO problems (title, description, difficulty, points, xp_reward, category, tags, test_cases, initial_code) VALUES
-('Reverse a String', 'Write a function that reverses a given string.', 'Easy', 10, 50, 'Strings', '["strings"]', '[{"input": ["hello"], "expected": "olleh"}, {"input": ["world"], "expected": "dlrow"}]', 'function reverseString(str) {\n  // Write your code here\n}'),
+INSERT INTO problems (id, title, description, difficulty, points, xp_reward, category, tags, test_cases, initial_code) VALUES
+('77777777-7777-7777-7777-777777777777', 'Syntax Basics', 'Fix the syntax error in this simple program.', 'Easy', 10, 50, 'Basics', '["syntax"]', '[{"input": [], "expected": "Hello World"}]', 'function hello() {\n  return "Hello World"\n}'),
+('88888888-8888-8888-8888-888888888888', 'Array Loop', 'Find the sum of all elements in an array.', 'Easy', 15, 60, 'Arrays', '["loops"]', '[{"input": [[1,2,3]], "expected": 6}]', 'function sum(arr) {}'),
+('99999999-9999-9999-9999-999999999999', 'Fibonacci Master', 'Return the nth Fibonacci number.', 'Medium', 30, 150, 'Algorithms', '["dp", "recursion"]', '[{"input": [5], "expected": 5}]', 'function fib(n) {}'),
+(uuid_generate_v4(), 'Reverse a String', 'Write a function that reverses a given string.', 'Easy', 10, 50, 'Strings', '["strings"]', '[{"input": ["hello"], "expected": "olleh"}, {"input": ["world"], "expected": "dlrow"}]', 'function reverseString(str) {\n  // Write your code here\n}'),
 ('Check Palindrome', 'Determine if a string is a palindrome (reads the same forwards and backwards).', 'Easy', 15, 60, 'Strings', '["strings", "logic"]', '[{"input": ["racecar"], "expected": true}, {"input": ["hello"], "expected": false}]', 'function isPalindrome(str) {\n  // Write your code here\n}'),
 ('FizzBuzz', 'Return "Fizz" if divisible by 3, "Buzz" if by 5, "FizzBuzz" if both, else the number.', 'Easy', 10, 50, 'Logic', '["math", "logic"]', '[{"input": [3], "expected": "Fizz"}, {"input": [5], "expected": "Buzz"}, {"input": [15], "expected": "FizzBuzz"}, {"input": [7], "expected": 7}]', 'function fizzBuzz(n) {\n  // Write your code here\n}'),
 ('Find Maximum', 'Given an array, return the largest element.', 'Easy', 10, 50, 'Arrays', '["arrays"]', '[{"input": [[1, 5, 3]], "expected": 5}, {"input": [[-10, 0, -5]], "expected": 0}]', 'function findMax(arr) {\n  // Write your code here\n}'),

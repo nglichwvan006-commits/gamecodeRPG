@@ -1,5 +1,6 @@
 -- Update bosses table to link with maps and problems
-ALTER TABLE public.bosses ADD COLUMN IF NOT EXISTS map_id UUID REFERENCES public.maps(id);
+-- Ensure map_id is TEXT to match the maps table's updated ID type
+ALTER TABLE public.bosses ADD COLUMN IF NOT EXISTS map_id TEXT REFERENCES public.maps(id);
 ALTER TABLE public.bosses ADD COLUMN IF NOT EXISTS problem_id UUID REFERENCES public.problems(id);
 
 -- Seed Bosses
