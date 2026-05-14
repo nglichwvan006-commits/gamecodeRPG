@@ -100,6 +100,22 @@
   --glass-border: oklch(1 0 0 / 15%);
 }
 
+@utility glass {
+  @apply bg-glass backdrop-blur-md border border-glass-border;
+}
+
+@utility glass-card {
+  @apply glass shadow-lg transition-all duration-300 hover:shadow-xl hover:bg-glass/80;
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-linear-to-r from-primary to-primary/60;
+}
+
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -113,22 +129,6 @@
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-glass backdrop-blur-md border border-glass-border;
-  }
-  
-  .glass-card {
-    @apply glass shadow-lg transition-all duration-300 hover:shadow-xl hover:bg-glass/80;
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-linear-to-r from-primary to-primary/60;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }

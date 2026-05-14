@@ -138,13 +138,13 @@ INSERT INTO pets (name, description, buff_type, buff_value, rarity) VALUES
 --------------------------------------------------------------------------------
 -- 5. ZONES (5 Zones - Linked to Beginner Village Map)
 --------------------------------------------------------------------------------
--- Map ID: 44444444-4444-4444-4444-444444444444 (Beginner Village)
+-- Map ID: map-beginner-001 (Beginner Village)
 INSERT INTO zones (map_id, name, description, enemy_type, problem_id) VALUES
-('44444444-4444-4444-4444-444444444444', 'Variable Valley', 'A low-lying area where declarations are made.', 'Syntax Skeleton', (SELECT id FROM problems WHERE title = 'Reverse a String' LIMIT 1)),
-('44444444-4444-4444-4444-444444444444', 'Array Archipelago', 'A series of islands where data is stored in order.', 'List Lizard', (SELECT id FROM problems WHERE title = 'Find Maximum' LIMIT 1)),
-('44444444-4444-4444-4444-444444444444', 'Logic Labyrinth', 'A maze where you must choose the right path.', 'If-Else Imp', (SELECT id FROM problems WHERE title = 'FizzBuzz' LIMIT 1)),
-('44444444-4444-4444-4444-444444444444', 'String Stream', 'A flowing river of characters.', 'Char Crocodile', (SELECT id FROM problems WHERE title = 'Check Palindrome' LIMIT 1)),
-('44444444-4444-4444-4444-444444444444', 'Math Mountain', 'Climb the peaks of calculation.', 'Number Naga', (SELECT id FROM problems WHERE title = 'Calculate Factorial' LIMIT 1));
+('map-beginner-001', 'Variable Valley', 'A low-lying area where declarations are made.', 'Syntax Skeleton', (SELECT id FROM problems WHERE title = 'Reverse a String' LIMIT 1)),
+('map-beginner-001', 'Array Archipelago', 'A series of islands where data is stored in order.', 'List Lizard', (SELECT id FROM problems WHERE title = 'Find Maximum' LIMIT 1)),
+('map-beginner-001', 'Logic Labyrinth', 'A maze where you must choose the right path.', 'If-Else Imp', (SELECT id FROM problems WHERE title = 'FizzBuzz' LIMIT 1)),
+('map-beginner-001', 'String Stream', 'A flowing river of characters.', 'Char Crocodile', (SELECT id FROM problems WHERE title = 'Check Palindrome' LIMIT 1)),
+('map-beginner-001', 'Math Mountain', 'Climb the peaks of calculation.', 'Number Naga', (SELECT id FROM problems WHERE title = 'Calculate Factorial' LIMIT 1));
 
 --------------------------------------------------------------------------------
 -- 6. BOSSES (5 Bosses)
